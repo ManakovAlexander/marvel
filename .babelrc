@@ -2,7 +2,22 @@
   "presets": ["babel-preset-expo"],
   "env": {
     "development": {
-      "plugins": ["transform-react-jsx-source"]
+      "plugins": [
+        "transform-react-jsx-source",
+        ["module-alias", [
+          { "src": "./src/action-types", "expose": "action-types" },
+          { "src": "./src/actions-creators", "expose": "actions-creators" },
+          { "src": "./src/common-components", "expose": "common-components" },
+          { "src": "./src/components", "expose": "components" },
+          { "src": "./src/reducers", "expose": "reducers" },
+          { "src": "./src/requests", "expose": "requests" },
+          { "src": "./src/saga", "expose": "saga" },
+          { "src": "./src/schemas", "expose": "schemas" },
+          { "src": "./src/selectors", "expose": "selectors" },
+          { "src": "./src/services", "expose": "services" },
+          { "src": "./src/store", "expose": "store" }
+        ]]
+      ]
     }
   }
 }
