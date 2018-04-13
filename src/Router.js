@@ -1,5 +1,5 @@
 import { StackNavigator } from 'react-navigation';
-import { Characters } from './components/Characters'
+import { Characters } from './components/Characters/Characters'
 import { Character } from './components/Character'
 import { Comics } from './components/Comics'
 

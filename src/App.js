@@ -23,9 +23,9 @@ export default class App extends React.Component {
     }
 
     return (
-    <Container>
-      <ReduxProvider />
-    </Container>
+      <Container>
+        <ReduxProvider />
+      </Container>
     );
   }
 
