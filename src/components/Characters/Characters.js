@@ -8,6 +8,8 @@ import { CharactersList } from './List'
 import { fetchCharacters, clearCharacters } from '../../actions-creators/characters'
 import { charactersSelector } from '../../selectors/characters'
 
+const MIN_NUMBER_OF_CHARS_FOR_SEARCH = 1
+
 class CharactersClass extends PureComponent {
   static navigationOptions = ({ navigation }) => ({
     title: 'Characters'
@@ -61,7 +63,7 @@ class CharactersClass extends PureComponent {
   }
 
   handleSearch(nameStartsWith = this.state.text) {
-    if (nameStartsWith.length < 3) {
+    if (nameStartsWith.length < MIN_NUMBER_OF_CHARS_FOR_SEARCH) {
       return
     }
     const offset = this.props.characters.length
