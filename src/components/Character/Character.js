@@ -1,16 +1,17 @@
 // @flow
-import React, { Component } from 'react'
-import { Content, Text, Thumbnail, Tab, Tabs, H3, Button } from 'native-base'
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import React, { PureComponent } from 'react'
+import { Content, Text, Tab, Tabs, Button } from 'native-base'
+
 import { connect } from 'react-redux'
 
 import { Comics } from './Comics'
 import { Events } from './Events'
+import { MainInfo } from './MainInfo'
 import { Series } from './Series'
 
 import { characterSelector } from '../../selectors/characters'
 
-class CharacterClass extends Component {
+class CharacterClass extends PureComponent {
   static navigationOptions = ({ navigation }) => ({
     title: 'Character'
   })
@@ -23,18 +24,8 @@ class CharacterClass extends Component {
     const { navigate } = this.props.navigation
     return (
       <Content>
-        <Grid style={{ padding: 8 }}>
-          <Col style={{ width: 100 }}>
-            <Thumbnail square source={{ uri: thumbnailUri(character) }} style={{ width: 100, height: 100 }}/>
-          </Col>
-          <Col style={{ paddingLeft: 8 }}>
-            <H3>{ character.name }</H3>
-          </Col>
-        </Grid>
-        <Text style={{ padding: 8 }}>
-          { character.description }
-        </Text>
-        <Button block onPress={() => navigate('Comics', { characterId: character.id })}>
+        <MainInfo character={this.props.character} />
+        <Button block onPress={this.navigateToComics}>
           <Text>Comics</Text>
         </Button>
         <Tabs initialPage={0}>
@@ -56,7 +47,10 @@ class CharacterClass extends Component {
   }
 }
 
-const thumbnailUri = (character) => `${character.thumbnail.path}.${character.thumbnail.extension}`
+navigateToComics = () => {
+  const { character } = this.props
+  navigate('Comics', { characterId: character.id })
+}
 
 const mapStateToProps = (state, ownProps) => {
   const characterId = ownProps.navigation.state.params.id
