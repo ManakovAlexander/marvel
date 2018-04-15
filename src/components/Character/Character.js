@@ -21,7 +21,6 @@ class CharacterClass extends PureComponent {
 
   render() {
     const { character } = this.props
-    const { navigate } = this.props.navigation
     return (
       <Content>
         <MainInfo character={this.props.character} />
@@ -45,11 +44,11 @@ class CharacterClass extends PureComponent {
       </Content>
     )
   }
-}
 
-navigateToComics = () => {
-  const { character } = this.props
-  navigate('Comics', { characterId: character.id })
+  navigateToComics = () => {
+    const { character } = this.props
+    this.props.navigation.navigate('Comics', { characterId: character.id })
+  }
 }
 
 const mapStateToProps = (state, ownProps) => {
